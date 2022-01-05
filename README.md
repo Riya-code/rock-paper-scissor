@@ -1,1 +1,1 @@
-# rock-paper-scissor
+# Implementation of rock-paper-scissor game.
