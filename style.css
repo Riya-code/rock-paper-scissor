@@ -3,4 +3,7 @@ body{
     background: black;
     color: gold;
   }
+th{
+    padding: 4px;
+}
   
