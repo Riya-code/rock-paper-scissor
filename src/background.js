@@ -22,7 +22,8 @@ Right_Bg._animate = function(){
        Right_Bg.time = 0;
 	   Right_Bg.frames++;
 	}
-	Right_Bg.use(BG_RIGHTS[Right_Bg.frames%BG_RIGHTS.length]);
+    Right_Bg.frames = Right_Bg.frames%BG_RIGHTS.length;
+	Right_Bg.use(BG_RIGHTS[Right_Bg.frames]);
 	Right_Bg.time += K.dt();
 }
 
@@ -33,6 +34,7 @@ Left_Bg._animate = function(){
        Left_Bg.time = 0;
 	   Left_Bg.frames++;
 	}
-	Left_Bg.use(BG_LEFTS[Left_Bg.frames%BG_LEFTS.length]);
+    Left_Bg.frames = Left_Bg.frames%BG_LEFTS.length;
+	Left_Bg.use(BG_LEFTS[Left_Bg.frames]);
 	Left_Bg.time += K.dt();
 }

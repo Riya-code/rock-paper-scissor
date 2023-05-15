@@ -11,8 +11,9 @@ export const Player_Hand = K.add([
  Player_Hand.frames = 0;
  Player_Hand._animate = function (){
    if(gameState === "Running" && playerState === "Waiting"){
-   Player_Hand.pos.y = PLAYER_FRAMES[Player_Hand.frames%(PLAYER_FRAMES.length-1)];
-   Player_Hand.frames++;
+     Player_Hand.frames++;
+     Player_Hand.frames = Player_Hand.frames%PLAYER_FRAMES.length;
+     Player_Hand.pos.y = PLAYER_FRAMES[Player_Hand.frames];
    }else{
     Player_Hand.pos.y = ANIM_MID;
    }
@@ -27,8 +28,9 @@ export const Player_Hand = K.add([
   CPU_Hand.frames = 0;
   CPU_Hand._animate = function (){
     if(gameState === "Running" && cpuState === "Waiting"){
-      CPU_Hand.pos.y = CPU_FRAMES[CPU_Hand.frames%(CPU_FRAMES.length-1)];
       CPU_Hand.frames++;
+      CPU_Hand.frames = CPU_Hand.frames%CPU_FRAMES.length;
+      CPU_Hand.pos.y = CPU_FRAMES[CPU_Hand.frames];
     }else{
      CPU_Hand.pos.y = ANIM_MID;
     }
