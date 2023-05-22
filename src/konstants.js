@@ -14,6 +14,8 @@ K.loadSprite("btn_restart","sprites/restart_button.png");
 K.loadSprite("btn_rock","sprites/rock_button.png");
 K.loadSprite("btn_paper","sprites/paper_button.png");
 K.loadSprite("btn_scissor","sprites/scissor_button.png");
+K.loadSprite("btn_left","sprites/left.png");
+K.loadSprite("btn_right","sprites/right.png");
 
 K.loadSound("win","sound/win.wav");
 K.loadSound("loss","sound/loss.wav");
@@ -42,14 +44,15 @@ export const HAND_HEIGHT = 32;
 export const HAND_SCALE = SCALE*2;
 
 export const STATES = ["Rock","Paper","Scissor"];
-export const CPU_HANDS = ["left_rock_hand","left_paper_hand","left_scissor_hand"];
+export const LEFT_HANDS = ["left_rock_hand","left_paper_hand","left_scissor_hand"];
+export const RIGHT_HANDS = ["right_rock_hand","right_paper_hand","right_scissor_hand"];
 export const TTS = "TAP TO START!";
 
 export const FRAMES = 7;
 export const ANIM_VALUE = 1.5*SCALE;
 export const ANIM_MID = MID_Y - (HAND_HEIGHT*SCALE);
-export const CPU_FRAMES = [...gen_frames(FRAMES,-1),...gen_frames(FRAMES,1)];
-export const PLAYER_FRAMES = [...gen_frames(FRAMES,1),...gen_frames(FRAMES,-1)];
+export const LHAND_FRAMES = [...gen_frames(FRAMES,-1),...gen_frames(FRAMES,1)];
+export const RHAND_FRAMES = [...gen_frames(FRAMES,1),...gen_frames(FRAMES,-1)];
 
 function gen_frames(len,pc){// Frames array generator for hands;
     let frames = [];

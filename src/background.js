@@ -7,6 +7,8 @@ export const Left_Bg = K.add([
     BG_COLOR_LEFT,
     K.area(),
 ])
+Left_Bg.frames = 0;
+Left_Bg.time = 0;
 
 export const Right_Bg = K.add([
     K.pos(MID_X,0),
@@ -14,27 +16,23 @@ export const Right_Bg = K.add([
     BG_COLOR_RIGHT,
     K.area(),
 ])
-
 Right_Bg.frames = 0;
 Right_Bg.time = 0;
-Right_Bg._animate = function(){
-	if(Right_Bg.time > 0.3){
-       Right_Bg.time = 0;
-	   Right_Bg.frames++;
-	}
-    Right_Bg.frames = Right_Bg.frames%BG_RIGHTS.length;
-	Right_Bg.use(BG_RIGHTS[Right_Bg.frames]);
-	Right_Bg.time += K.dt();
+
+function handle_animation(obj,side){
+    if(obj.time > 0.3){
+        obj.time = 0;
+        obj.frames++;
+     }
+     if(side === "right"){
+     obj.frames = obj.frames%BG_RIGHTS.length;
+     obj.use(BG_RIGHTS[obj.frames]);
+     }else{
+     obj.frames = obj.frames%BG_LEFTS.length;
+     obj.use(BG_LEFTS[obj.frames]); 
+     }
+     obj.time += K.dt();    
 }
 
-Left_Bg.frames = 0;
-Left_Bg.time = 0;
-Left_Bg._animate = function(){
-	if(Left_Bg.time > 0.3){
-       Left_Bg.time = 0;
-	   Left_Bg.frames++;
-	}
-    Left_Bg.frames = Left_Bg.frames%BG_LEFTS.length;
-	Left_Bg.use(BG_LEFTS[Left_Bg.frames]);
-	Left_Bg.time += K.dt();
-}
+Right_Bg._animate = function(){handle_animation(Right_Bg,"right")};
+Left_Bg._animate = function(){handle_animation(Left_Bg,"left")};
