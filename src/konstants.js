@@ -1,5 +1,5 @@
 import kaboom from "kaboom";
-const K = kaboom({font:"sink"});
+const K = kaboom({font:"sink",touchToMouse:true});
 
 K.loadSprite("left_rock_hand","sprites/left_rock.png");
 K.loadSprite("left_paper_hand", "sprites/left_paper.png");
