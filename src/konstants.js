@@ -48,17 +48,26 @@ export const LEFT_HANDS = ["left_rock_hand","left_paper_hand","left_scissor_hand
 export const RIGHT_HANDS = ["right_rock_hand","right_paper_hand","right_scissor_hand"];
 export const TTS = "TAP TO START!";
 
-export const FRAMES = 7;
+export const MAX_FRAMES = 7;
+export const MAX_FRAMES2 = 50;
 export const ANIM_VALUE = 1.5*SCALE;
 export const ANIM_MID = MID_Y - (HAND_HEIGHT*SCALE);
-export const LHAND_FRAMES = [...gen_frames(FRAMES,-1),...gen_frames(FRAMES,1)];
-export const RHAND_FRAMES = [...gen_frames(FRAMES,1),...gen_frames(FRAMES,-1)];
+export const LHAND_FRAMES = [...gen_frames(MAX_FRAMES,-1),...gen_frames(MAX_FRAMES,1)];
+export const RHAND_FRAMES = [...gen_frames(MAX_FRAMES,1),...gen_frames(MAX_FRAMES,-1)];
+export const LEFT_INIT_FRAMES = gen_frames2(50,0,-1);
+export const RIGHT_INIT_FRAMES = gen_frames2(50,K.width() - HAND_WIDTH*HAND_SCALE,1);
 
-function gen_frames(len,pc){// Frames array generator for hands;
+function gen_frames(len,p){// Frames array generator for hands;
     let frames = [];
-    for(let i = 0; i<len; i++){frames.push(ANIM_MID + (pc*(ANIM_VALUE*i)));}
+    for(let i = 0; i<len; i++){frames.push(ANIM_MID + (p*i*ANIM_VALUE));}
     frames = [...frames,...frames.splice(0,len-1).reverse()];
     return frames;
+}
+
+function gen_frames2(len,x,p){
+  let frames = [];
+  for(let i = 0; i<len; i++){frames.push(x+(2*p*i*ANIM_VALUE));}
+  return frames.reverse();
 }
 
 export default K;

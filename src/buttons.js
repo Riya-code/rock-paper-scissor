@@ -1,7 +1,7 @@
 import K from "./konstants";
 import { MID_X,MID_Y,TEXT_CONFIG2,BUTTON_SCALE,BUTTON_SIZE,BTN_MARGIN,TTS} from "./konstants";
 import { Right_Score,Left_Score} from "./scores";
-import { Right_Hand,Left_Hand} from "./hands";
+import { Right_Hand,Left_Hand, resetFrames} from "./hands";
 import { setLeft,setGameState,setRight,gameState,rightState,leftSprite,rightSprite,update_score, playerSide, leftState, setPlayerSide} from "./main";
 
 export const State_Button = K.add([
@@ -78,7 +78,7 @@ function handle_switch(){
 }
 
 function handle_state(){
-	if(gameState === TTS){
+	if(gameState === TTS && !State_Button.hidden){
 		setGameState("Running");
 		State_Button.text = "";
 		setRight("Waiting",rightSprite);
@@ -116,6 +116,7 @@ function handle_restart(){
 		Right_Score.reset();
 		Left_Score.reset();
 		Switch_Button.hidden = false;
+		resetFrames();
 	 }
 }
 

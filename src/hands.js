@@ -1,5 +1,6 @@
-import K from "./konstants";
-import { SCALE,MID_Y,HAND_HEIGHT,HAND_WIDTH,HAND_SCALE,STATES,LEFT_HANDS,RIGHT_HANDS,ANIM_MID,LHAND_FRAMES,RHAND_FRAMES} from "./konstants";
+import { State_Button } from "./buttons";
+import K, { LEFT_INIT_FRAMES, MAX_FRAMES2, RIGHT_INIT_FRAMES } from "./konstants";
+import { SCALE,MID_Y,HAND_HEIGHT,HAND_WIDTH,HAND_SCALE,STATES,LEFT_HANDS,RIGHT_HANDS,ANIM_MID,LHAND_FRAMES,RHAND_FRAMES,TTS} from "./konstants";
 import {gameState,rightState,leftState,leftSprite,setLeft,setRight,rightSprite} from "./main";
 
 export const Right_Hand = K.add([
@@ -51,6 +52,28 @@ function handle_animation(obj,side){
       Right_Hand.use(K.sprite(rightSprite));
      }
     }
+ }
+
+ let frames = 0;
+ let time = 0;
+ export function resetFrames(){
+  frames = 0;
+ } 
+ export function init_animation(){
+  if(frames < (MAX_FRAMES2-1)){
+    if(time > 0.005){
+      time = 0;
+      frames++;
+    }
+    Left_Hand.pos.x = LEFT_INIT_FRAMES[frames];
+    Right_Hand.pos.x = RIGHT_INIT_FRAMES[frames];
+    time += K.dt();
+    State_Button.hidden = true;
+  }else{
+    Left_Hand.pos.x = 0;
+    Right_Hand.pos.x = K.width() - HAND_WIDTH*HAND_SCALE;
+    State_Button.hidden = false;
+  }
  }
 
  Right_Hand._animate = function (){ handle_animation(Right_Hand,"right");}

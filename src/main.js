@@ -2,8 +2,8 @@ import K from "./konstants";
 import {TTS,BG_COLOR_LEFT,BG_COLOR_RIGHT} from "./konstants";
 import {Right_Bg,Left_Bg} from "./background";
 import {Left_Score,Right_Score,leftScore,rightScore} from "./scores";
-import {Right_Hand,Left_Hand } from "./hands";
 import {State_Button,Restart_Button,Pause_Button,Rock_Button,Scissor_Button,Paper_Button,Switch_Button} from "./buttons";
+import {Right_Hand,Left_Hand, init_animation } from "./hands";
 
 export let gameState = TTS; // Running , TAP TO START!,Paused!
 export let playerSide = "right"; // right left
@@ -113,5 +113,6 @@ export function update_hands(){
 K.onUpdate(() => {
 	Right_Hand._animate();
 	Left_Hand._animate();
-	update_hands();  
+	update_hands();
+	init_animation();
    })
